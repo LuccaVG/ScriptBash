@@ -33,7 +33,7 @@ cp /var/log/auth.log $COLLECTED_DIR/auth.log
 cp /var/log/dmesg $COLLECTED_DIR/dmesg.log
 
 echo -e "\033[1;35mColetando arquivos de configuração...\033[0m"
-cp -r /etc/* $COLLECTED_DIR/etc_backup
+mkdir -p /backup/etc_backup && cp -r /etc/* /backup/etc_backup
 
 echo -e "\033[1;35mListando o diretório raiz...\033[0m"
 ls / > $COLLECTED_DIR/root_dir_list.txt
