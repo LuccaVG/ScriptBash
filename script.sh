@@ -11,17 +11,17 @@ echo -e "\033[1;35mColetando arquivos do sistema...\033[0m"
 
 echo -e "\033[1;35mListando informações sobre discos e partições...\033[0m"
 
-lsblk > disk_info.txt
+lsblk > collected_logs/disk_info.txt
 
 echo -e "\033[1;35mColetando informações de rede...\033[0m"
 
-ss > active_connections.txt
+ss > collected_logs/active_connections.txt
 
-netstat -tuln > open_ports.txt
+netstat -tuln > collected_logs/open_ports.txt
 
 echo -e "\033[1;35mColetando lista de processos...\033[0m"
 
-ps > process_list.txt
+ps > collected_logs/process_list.txt
 
 echo -e "\033[1;35mColetando logs do sistema...\033[0m"
 
@@ -33,17 +33,17 @@ cp /var/log/auth.log $COLLECTED_DIR/auth.log
 cp /var/log/dmesg $COLLECTED_DIR/dmesg.log
 
 echo -e "\033[1;35mColetando arquivos de configuração...\033[0m"
-cp -r /etc/tmp/etc_backup
+cp -r /etc $COLLECTED_DIR/etc_backup
 
 echo -e "\033[1;35mListando o diretório raiz...\033[0m"
-ls / > /tmp/root_dir_list.txt
+ls / > $COLLECTED_DIR/root_dir_list.txt
 
 hostname=$(hostname)
 datetime=$(date +"%Y%m%d_%H%M%S")
 output_file="TraceHunter_${hostname}_${datetime}.tar.gz"
 
-tar -czf $output_file -C /tmp etc_backup root_dir_list.txt
+tar -czf $output_file -C $COLLECTED_DIR etc_backup root_dir_list.txt
 
-rm -rf /tmp/etc_backup /tmp/root_dir_list.txt
+rm -rf $COLLECTED_DIR/etc_backup $COLLECTED_DIR/root_dir_list.txt
 
 echo -e "\033[1;35mArquivo de saída criado: $output_file\033[0m"
