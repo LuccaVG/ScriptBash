@@ -44,4 +44,6 @@ output_file="TraceHunter_${hostname}_${datetime}.tar.gz"
 
 tar -czf "$output_file" -C "$COLLECTED_DIR" etc_backup root_dir_list.txt
 
+rm -rf $COLLECTED_DIR/etc_backup $COLLECTED_DIR/root_dir_list.txt
+
 echo -e "\033[1;35mArquivo de saída criado: $output_file\033[0m"
