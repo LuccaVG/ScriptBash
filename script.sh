@@ -7,9 +7,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-COLLECTED_DIR="collected_files"
-mkdir -p "$COLLECTED_DIR"
-
 echo -e "\033[1;35mColetando arquivos do sistema...\033[0m"
 
 echo -e "\033[1;35mListando informações sobre discos e partições...\033[0m"
