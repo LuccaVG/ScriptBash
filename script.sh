@@ -31,6 +31,10 @@ mkdir -p $COLLECTED_DIR
 cp /var/log/syslog $COLLECTED_DIR/syslog.log
 cp /var/log/auth.log $COLLECTED_DIR/auth.log
 cp /var/log/dmesg $COLLECTED_DIR/dmesg.log
+cp disk_info.txt $COLLECTED_DIR/disk_info.log
+cp active_connections.txt $COLLECTED_DIR/active_connections.log
+cp open_ports.txt $COLLECTED_DIR/open_ports.log
+cp process_list.txt $COLLECTED_DIR/process_list.log
 
 echo -e "\033[1;35mColetando arquivos de configuração...\033[0m"
 cp -r /etc $COLLECTED_DIR/etc_backup
