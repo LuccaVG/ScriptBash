@@ -7,34 +7,30 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+COLLECTED_DIR="collected_logs"
+mkdir -p $COLLECTED_DIR
+
 echo -e "\033[1;35mColetando arquivos do sistema...\033[0m"
 
 echo -e "\033[1;35mListando informações sobre discos e partições...\033[0m"
 
-lsblk > collected_logs/disk_info.txt
+lsblk > $COLLECTED_DIR/disk_info.txt
 
 echo -e "\033[1;35mColetando informações de rede...\033[0m"
 
-ss > collected_logs/active_connections.txt
+ss > $COLLECTED_DIR/active_connections.txt
 
-netstat -tuln > collected_logs/open_ports.txt
+netstat -tuln > $COLLECTED_DIR/open_ports.txt
 
 echo -e "\033[1;35mColetando lista de processos...\033[0m"
 
-ps > collected_logs/process_list.txt
+ps > $COLLECTED_DIR/process_list.txt
 
 echo -e "\033[1;35mColetando logs do sistema...\033[0m"
-
-COLLECTED_DIR="collected_logs"
-mkdir -p $COLLECTED_DIR
 
 cp /var/log/syslog $COLLECTED_DIR/syslog.log
 cp /var/log/auth.log $COLLECTED_DIR/auth.log
 cp /var/log/dmesg $COLLECTED_DIR/dmesg.log
-cp disk_info.txt $COLLECTED_DIR/disk_info.log
-cp active_connections.txt $COLLECTED_DIR/active_connections.log
-cp open_ports.txt $COLLECTED_DIR/open_ports.log
-cp process_list.txt $COLLECTED_DIR/process_list.log
 
 echo -e "\033[1;35mColetando arquivos de configuração...\033[0m"
 cp -r /etc $COLLECTED_DIR/etc_backup
